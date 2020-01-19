@@ -45,6 +45,7 @@ function draw (){
 function mousePressed(){
   let clickCol = Math.floor(mouseX/width*columns);
   drop(Math.floor(mouseX/width*columns));
+  win();
 }
 
 function drop(dropCol){
@@ -60,4 +61,116 @@ function drop(dropCol){
     }
   }
   console.log("all full");
+
+}
+
+function win(){
+  let active=0;
+  let consecutive=0;
+    //check column wins
+  for (let i=0; i<columns; i++){
+    active=0;
+    consecutive=0;
+    for(let j=0; j< rows; j++){
+      if(Grid[i][j]==active && Grid[i][j]!=0){
+        consecutive++;
+      }else{
+        consecutive=0;
+        active=Grid[i][j];
+      }
+      if(consecutive>=3){
+        console.log("winnner! " + active);
+      }
+    }
+  }
+    //check row wins
+  for (let i=0; i<rows; i++){
+    active=0;
+    consecutive=0;
+    for(let j=0; j< columns; j++){
+      if(Grid[j][i]==active && Grid[j][i]!=0){
+        consecutive++;
+      }else{
+        consecutive=0;
+        active=Grid[j][i];
+      }
+      if(consecutive>=3){
+        console.log("horri winnner! " + active);
+      }
+    }
+  }
+  //check diagonaL wins
+  for (let i=0; i<columns; i++){
+    active=0;
+    consecutive=0;
+    for(let j=0; j< rows; j++){
+      if(i+j < columns){
+        // console.log("checking " + (i+j) + ", " + j);
+        if(Grid[i+j][j]==active && Grid[i+j][j]!=0){
+          consecutive++;
+        }else{
+          consecutive=0;
+          active=Grid[i+j][j];
+        }
+        if(consecutive>=3){
+          console.log("winnner! " + active);
+        }
+      }
+    }
+  }
+  for (let i=0; i<rows; i++){
+    active=0;
+    consecutive=0;
+    for(let j=0; j< columns; j++){
+      if(i+j < rows){
+        // console.log("xxx checking " + (j) + ", " + (i+j));
+        if(Grid[j][i+j]==active && Grid[j][i+j]!=0){
+          consecutive++;
+        }else{
+          consecutive=0;
+          active=Grid[j][i+j];
+        }
+        if(consecutive>=3){
+          console.log("diagolan forward winnner! " + active);
+        }
+      }
+    }
+  }
+  //check diagonaL wins
+  for (let i=0; i<columns; i++){
+    active=0;
+    consecutive=0;
+    for(let j=0; j< rows; j++){
+      if(i-j >= 0){
+        console.log("checking " + (i-j) + ", " + j);
+        if(Grid[i-j][j]==active && Grid[i-j][j]!=0){
+          consecutive++;
+        }else{
+          consecutive=0;
+          active=Grid[i-j][j];
+        }
+        if(consecutive>=3){
+          console.log("winnner! " + active);
+        }
+      }
+    }
+  }
+  for (let i=0; i<rows; i++){
+    active=0;
+    consecutive=0;
+    for(let j=0; j< columns; j++){
+      if(i-j >= 0){
+        console.log("xxx checking " + (j) + ", " + (i-j));
+        if(Grid[j][i-j]==active && Grid[j][i-j]!=0){
+          consecutive++;
+        }else{
+          consecutive=0;
+          active=Grid[j][i-j];
+        }
+        if(consecutive>=3){
+          console.log("diagolan BACKKKKKK winnner! " + active);
+        }
+      }
+    }
+  }
 }
