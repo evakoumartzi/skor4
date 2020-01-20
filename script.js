@@ -56,6 +56,7 @@ function draw (){
 function mousePressed(){
   let clickCol = Math.floor(mouseX/width*columns);
   drop(Math.floor(mouseX/width*columns));
+  win();
 }
 
 function drop(dropCol){
@@ -71,8 +72,6 @@ function drop(dropCol){
     }
   }
   console.log("all full");
-<<<<<<< Updated upstream
-=======
 
 }
 
@@ -153,7 +152,7 @@ function win(){
       }
     }
   }
-  //check diagonaL wins
+  //check diagonaL wins xxx
   for (let i=0; i<columns; i++){
     active=0;
     consecutive=0;
@@ -190,5 +189,4 @@ function win(){
       }
     }
   }
->>>>>>> Stashed changes
 }
